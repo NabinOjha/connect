@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function LandingPage() {
+export default function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -74,7 +74,7 @@ export default function LandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-green-500 text-green-500 hover:bg-green-50 px-8 py-3 bg-transparent"
+                className="border-green-500 text-green-500 hover:bg-green-500 px-8 py-3 bg-transparent"
               >
                 Find Work
               </Button>
