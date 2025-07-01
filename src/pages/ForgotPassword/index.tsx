@@ -1,26 +1,32 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type UserSignInForm, userSignInSchema } from "./schema";
 import { InputField } from "@/components/common/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
+import * as z from "zod/v4";
 
-const SignIn = () => {
+const forgotPasswordSchema = z.object({
+  email: z
+    .email("Please enter a valid email address")
+    .min(1, "Email is required"),
+});
+
+type ForgotPasswordForm = z.infer<typeof forgotPasswordSchema>;
+
+const ForgotPassword = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<UserSignInForm>({
-    resolver: zodResolver(userSignInSchema),
+  } = useForm<ForgotPasswordForm>({
+    resolver: zodResolver(forgotPasswordSchema),
     mode: "onBlur",
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
-  const onSubmit = async (data: UserSignInForm) => {
+  const onSubmit = async (data: ForgotPasswordForm) => {
     try {
       console.log("Form data:", data);
       // Simulate API call
@@ -47,38 +53,15 @@ const SignIn = () => {
           required
         />
 
-        <InputField
-          label="Password"
-          name="password"
-          type="password"
-          register={register}
-          error={errors.password}
-          placeholder="Password"
-          required
-        />
-
         <Button
           disabled
           className="bg-green-500 w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2"
         >
-          Sign Up
+          Reset Password
         </Button>
       </form>
-      <div className="mt-6 flex items-center justify-center space-x-4">
-        <span>Don't have an account yet? </span>
-        <Link to="/auth/signup" className="underline">
-          {" "}
-          Sign Up
-        </Link>
-      </div>
-
-      <div className="mt-2 flex items-center justify-center space-x-4">
-        <Link to="/auth/forgot-password" className="underline text-primary font-semibold">
-          Forgot your password?
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

@@ -1,17 +1,13 @@
-import { Link, Outlet } from "react-router";
-import LogoWithText from "../common/LogoWithText";
+import { Outlet } from "react-router";
+import Header from "../common/Header";
 
 export default function AuthLayout() {
   return (
-    <div className="">
-      <div className="w-full flex justify-center py-6 bg-white">
-        <Link to="/">
-          <LogoWithText />
-        </Link>
-      </div>
+    <>
+      <Header />
       <div className="bg-gray-50 flex items-start mt-16 justify-center">
         <Outlet />
       </div>
-    </div>
+    </>
   );
 }

@@ -29,7 +29,7 @@ export default function Header() {
                   Sign In
                 </Button>
               </Link>
-              <Link to="/auth/contracter">
+              <Link to="/auth/contracter/signup">
                 <Button className="bg-green-500 hover:bg-green-700 text-white">
                   Join as Contractor
                 </Button>

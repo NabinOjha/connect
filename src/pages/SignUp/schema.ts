@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as z from "zod/v4";
 
 export const userRegistrationSchema = z
   .object({
@@ -27,6 +27,5 @@ export const userRegistrationSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
-
 
 export type UserRegistrationForm = z.infer<typeof userRegistrationSchema>;
