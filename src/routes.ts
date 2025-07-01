@@ -5,7 +5,7 @@ import AuthLayout from "@/components/layouts/AuthLayout";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 
-const router =  createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     children: [
@@ -15,7 +15,9 @@ const router =  createBrowserRouter([
         Component: AuthLayout,
         children: [
           { path: "signin", Component: SignIn },
-          { path: "contracter", Component: SignUp },
+          { path: "signup", Component: SignUp },
+          { path: "contracter/signin", Component: SignIn },
+          { path: "contracter/signup", Component: SignUp },
         ],
       },
     ],

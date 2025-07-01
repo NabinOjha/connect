@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegistrationSchema, type UserRegistrationForm } from "./schema";
 import { InputField } from "@/components/common/Form/InputField/Index";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 const SignUp = () => {
   const {
@@ -35,7 +37,7 @@ const SignUp = () => {
 
   return (
     <div className="w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <InputField
@@ -43,7 +45,7 @@ const SignUp = () => {
           name="firstName"
           register={register}
           error={errors.firstName}
-          placeholder="Enter your first name"
+          placeholder="First Name"
           required
         />
 
@@ -52,7 +54,7 @@ const SignUp = () => {
           name="lastName"
           register={register}
           error={errors.lastName}
-          placeholder="Enter your last name"
+          placeholder="Last Name"
           required
         />
 
@@ -62,7 +64,7 @@ const SignUp = () => {
           type="email"
           register={register}
           error={errors.email}
-          placeholder="Enter your email"
+          placeholder="Email"
           required
         />
 
@@ -72,7 +74,7 @@ const SignUp = () => {
           type="password"
           register={register}
           error={errors.password}
-          placeholder="Enter your password"
+          placeholder="Password"
           required
         />
 
@@ -82,22 +84,18 @@ const SignUp = () => {
           type="password"
           register={register}
           error={errors.confirmPassword}
-          placeholder="Confirm your password"
+          placeholder="Confirm Password"
           required
         />
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className={`w-full py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-            isSubmitting
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
-          } text-white transition-colors`}
-        >
-          {isSubmitting ? "Registering..." : "Register"}
-        </button>
+        <Button disabled className="bg-green-500 w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2">
+          Sign Up
+        </Button>
       </form>
+      <div className="mt-6 flex items-center justify-center space-x-4">
+        <span>Already have an account? </span>
+        <Link to="/auth/signin" className="underline"> Sign In</Link>
+      </div>
     </div>
   );
 };
