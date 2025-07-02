@@ -25,12 +25,12 @@ export default function Header() {
             </nav>
             <div className="flex items-center space-x-4">
               <Link to="/auth/signin">
-                <Button variant="ghost" className="text-gray-600">
+                <Button variant="ghost" className="cursor-pointer text-gray-600 hover:primary-gradient hover:text-secondary">
                   Sign In
                 </Button>
               </Link>
               <Link to="/auth/contracter/signup">
-                <Button className="bg-green-500 hover:bg-green-700 text-white">
+                <Button className="primary-gradient hover:bg-green-700 text-secondary cursor-pointer">
                   Join as Contractor
                 </Button>
               </Link>

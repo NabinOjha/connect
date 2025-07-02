@@ -15,8 +15,7 @@ const SignUp = () => {
     resolver: zodResolver(userRegistrationSchema),
     mode: "onBlur",
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -25,10 +24,7 @@ const SignUp = () => {
 
   const onSubmit = async (data: UserRegistrationForm) => {
     try {
-      console.log("Form data:", data);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Registration successful!");
+      console.log(data)
       reset();
     } catch (error) {
       console.error("Registration failed:", error);
@@ -41,20 +37,11 @@ const SignUp = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <InputField
-          label="First Name"
-          name="firstName"
+          label="Name"
+          name="name"
           register={register}
-          error={errors.firstName}
-          placeholder="First Name"
-          required
-        />
-
-        <InputField
-          label="Last Name"
-          name="lastName"
-          register={register}
-          error={errors.lastName}
-          placeholder="Last Name"
+          error={errors.name}
+          placeholder="Name"
           required
         />
 
@@ -89,8 +76,8 @@ const SignUp = () => {
         />
 
         <Button
-          disabled
-          className="bg-green-500 w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2"
+          // disabled
+          className="primary-gradient w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2"
         >
           Sign Up
         </Button>

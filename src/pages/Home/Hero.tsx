@@ -18,14 +18,14 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-green-500 hover:bg-green-700 text-white px-8 py-3"
+              className="primary-gradient hover:bg-green-700 text-[#2D3748] px-8 py-3 cursor-pointer"
             >
               Post a Job <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-green-500 text-green-500 hover:bg-green-500 px-8 py-3 bg-transparent"
+              className="border-green-500 text-green-500 cursor-pointer hover:primary-gradient px-8 py-3 bg-transparent"
             >
               Find Work
             </Button>
