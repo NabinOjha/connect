@@ -1,10 +1,10 @@
-import Header from "@/components/common/Header";
+import Header from "@/components/layouts/Header";
 import Hero from "@/pages/Home/Hero";
 import Stats from "@/pages/Home/Stats";
 import HowItWorks from "@/pages/Home/HowItWorks";
 import Features from "@/pages/Home/Features";
 import Cta from "@/pages/Home/Cta";
-import Footer from "@/components/common/Footer";
+import Footer from "@/components/layouts/Footer";
 
 export default function App() {
   return (

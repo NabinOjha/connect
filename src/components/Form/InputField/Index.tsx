@@ -2,9 +2,10 @@ import {
   type FieldError,
   type UseFormRegister,
   type Path,
+  type FieldValues,
 } from "react-hook-form";
 
-interface InputFieldProps<T extends Record<string, any>> {
+interface InputFieldProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
   register: UseFormRegister<T>;
@@ -14,7 +15,7 @@ interface InputFieldProps<T extends Record<string, any>> {
   required?: boolean;
 }
 
-export function InputField<T extends Record<string, any>>({
+export function InputField<T extends FieldValues>({
   label,
   name,
   register,

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type UserSignInForm, userSignInSchema } from "./schema";
-import { InputField } from "@/components/common/Form/InputField/Index";
+import { InputField } from "@/components/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 

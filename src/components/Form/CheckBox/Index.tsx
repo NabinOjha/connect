@@ -2,9 +2,10 @@ import {
   type FieldError,
   type UseFormRegister,
   type Path,
+  type FieldValues,
 } from "react-hook-form";
 
-interface CheckboxFieldProps<T extends Record<string, any>> {
+interface CheckboxFieldProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
   register: UseFormRegister<T>;
@@ -12,7 +13,7 @@ interface CheckboxFieldProps<T extends Record<string, any>> {
   required?: boolean;
 }
 
-export function CheckboxField<T extends Record<string, any>>({
+export function CheckboxField<T extends FieldValues>({
   label,
   name,
   register,

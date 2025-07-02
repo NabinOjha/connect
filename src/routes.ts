@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 
 import Home from "@/pages/Home";
-import AuthLayout from "@/components/layouts/AuthLayout";
+import AuthLayout from "@/components/layouts/Auth";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";

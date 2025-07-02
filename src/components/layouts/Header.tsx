@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
-import LogoWithText from "./LogoWithText";
+import LogoWithText from "../LogoWithText";
 
 export default function Header() {
   return (
     <div>
-      <header className="bg-white shadow-sm">
+      <header className="dark shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <LogoWithText />

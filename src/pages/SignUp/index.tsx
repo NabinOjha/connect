@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegistrationSchema, type UserRegistrationForm } from "./schema";
-import { InputField } from "@/components/common/Form/InputField/Index";
+import { InputField } from "@/components/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 
@@ -36,7 +36,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <div className="dark w-lg mx-auto mt-8 p-6 rounded-lg bg-white shadow-all">
       <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -88,13 +88,19 @@ const SignUp = () => {
           required
         />
 
-        <Button disabled className="bg-green-500 w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2">
+        <Button
+          disabled
+          className="bg-green-500 w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2"
+        >
           Sign Up
         </Button>
       </form>
       <div className="mt-6 flex items-center justify-center space-x-4">
         <span>Already have an account? </span>
-        <Link to="/auth/signin" className="underline"> Sign In</Link>
+        <Link to="/auth/signin" className="underline">
+          {" "}
+          Sign In
+        </Link>
       </div>
     </div>
   );
