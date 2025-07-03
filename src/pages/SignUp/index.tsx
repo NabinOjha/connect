@@ -101,7 +101,7 @@ const SignUp = () => {
         <Button
           type="submit"
           disabled={isSubmitting || mutation.isPending}
-          className="primary-gradient w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2 disabled:opacity-50"
+          className="primary-gradient w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2 disabled:opacity-50 cursor-pointer"
         >
           {mutation.isPending ? "Signing Up..." : "Sign Up"}
         </Button>

@@ -25,9 +25,10 @@ export const signOut = async () => {
   return response.data;
 };
 
-export const sendResetPasswordLink = async () => {
+export const sendResetPasswordLink = async (data: { email: string }) => {
   const response = await axios.post(
-    `${import.meta.env.VITE_API_URL}/auth/reset-password-link`
+    `${import.meta.env.VITE_API_URL}/auth/reset-password-link`,
+    data
   );
   return response.data;
 };
