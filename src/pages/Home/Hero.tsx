@@ -18,7 +18,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="primary-gradient hover:bg-green-700 text-[#2D3748] px-8 py-3 cursor-pointer"
+              className="bg-accent hover:bg-green-700 text-white px-8 py-3 cursor-pointer"
             >
               Post a Job <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
