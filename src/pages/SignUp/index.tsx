@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+
 import { userRegistrationSchema, type UserRegistrationForm } from "./schema";
 import { InputField } from "@/components/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
-import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/services/api/auth";
 
 const SignUp = () => {
@@ -26,8 +27,7 @@ const SignUp = () => {
 
   const mutation = useMutation({
     mutationFn: signUp,
-    onSuccess: (data) => {
-      console.log("Registration successful:", data);
+    onSuccess: () => {
       reset();
     },
     onError: (error) => {
@@ -38,7 +38,6 @@ const SignUp = () => {
   const onSubmit = async (data: UserRegistrationForm) => {
     mutation.mutate(data);
   };
-
 
   if (mutation.isPending) {
     return (

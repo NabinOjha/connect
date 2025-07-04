@@ -10,6 +10,14 @@ export const signUp = async (data: UserRegistrationForm) => {
   return response.data;
 };
 
+export const verifySignUp = async (token: string) => {
+  const response = await axios.post(
+    `${import.meta.env.VITE_API_URL}/auth/verify`,
+    { token }
+  );
+  return response.data;
+};
+
 export const signIn = async (data: UserSignInForm) => {
   const response = await axios.post(
     `${import.meta.env.VITE_API_URL}/auth/signin`,

@@ -4,7 +4,8 @@ import Home from "@/pages/Home";
 import AuthLayout from "@/components/layouts/Auth";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
-import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPassword from "@/pages/ForgotPassword";
+import Verification from "@/pages/Verification";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         Component: AuthLayout,
         children: [
           { path: "signin", Component: SignIn },
+          { path: "verify/:token", Component: Verification },
           { path: "signup", Component: SignUp },
           { path: "forgot-password", Component: ForgotPassword },
           { path: "contracter/signin", Component: SignIn },
