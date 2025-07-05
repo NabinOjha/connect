@@ -1,29 +1,37 @@
-import { useForm } from "react-hook-form";
+import { useForm, type UseFormProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 
 import { userRegistrationSchema, type UserRegistrationForm } from "./schema";
 import { InputField } from "@/components/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
 import { signUp } from "@/services/api/auth";
+import { CONTRACTOR, USER } from "@/lib/utils";
+import { toast } from "react-toastify";
+
+const CONTRACTOR_SIGNUP_PATH = "/auth/contracter/signup";
+
+const useFormConfig: UseFormProps<UserRegistrationForm> = {
+  resolver: zodResolver(userRegistrationSchema),
+  mode: "onBlur",
+  defaultValues: {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "USER",
+  },
+};
 
 const SignUp = () => {
+  const { pathname } = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<UserRegistrationForm>({
-    resolver: zodResolver(userRegistrationSchema),
-    mode: "onBlur",
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
+  } = useForm<UserRegistrationForm>(useFormConfig);
 
   const mutation = useMutation({
     mutationFn: signUp,
@@ -31,32 +39,20 @@ const SignUp = () => {
       reset();
     },
     onError: (error) => {
-      console.error("Registration failed:", error);
+      toast.error(error.message);
     },
   });
 
   const onSubmit = async (data: UserRegistrationForm) => {
-    mutation.mutate(data);
+    mutation.mutate({
+      ...data,
+      role: pathname === CONTRACTOR_SIGNUP_PATH ? CONTRACTOR : USER,
+    });
   };
-
-  if (mutation.isPending) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div>Loading...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="dark w-lg mx-auto mt-8 p-6 rounded-lg bg-white shadow-all">
       <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-
-      {mutation.isError && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-          {mutation.error?.message || "Registration failed. Please try again."}
-        </div>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <InputField
           label="Name"
@@ -102,7 +98,7 @@ const SignUp = () => {
           disabled={isSubmitting || mutation.isPending}
           className="primary-gradient w-full py-6 font-bold text-md hover:bg-green-700 text-white mt-2 disabled:opacity-50 cursor-pointer"
         >
-          {mutation.isPending ? "Signing Up..." : "Sign Up"}
+          Sign Up
         </Button>
       </form>
 
