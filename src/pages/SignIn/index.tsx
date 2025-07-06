@@ -1,35 +1,46 @@
-import { useForm } from "react-hook-form";
+import { useForm, UseFormProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type UserSignInForm, userSignInSchema } from "./schema";
 import { InputField } from "@/components/Form/InputField/Index";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import { signIn } from "@/services/api/auth";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useError } from "@/hooks/useError";
+
+const formProps: UseFormProps<UserSignInForm> = {
+  resolver: zodResolver(userSignInSchema),
+  mode: "onBlur",
+  defaultValues: {
+    email: "",
+    password: "",
+  },
+};
 
 const SignIn = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
-  } = useForm<UserSignInForm>({
-    resolver: zodResolver(userSignInSchema),
-    mode: "onBlur",
-    defaultValues: {
-      email: "",
-      password: "",
+  } = useForm<UserSignInForm>(formProps);
+
+  const { getMessage } = useError();
+
+  const mutation = useMutation({
+    mutationFn: signIn,
+    onSuccess: () => {
+      reset();
+    },
+    onError: (error) => {
+      const message = getMessage(error);
+      toast.error(message);
     },
   });
 
   const onSubmit = async (data: UserSignInForm) => {
-    try {
-      console.log("Form data:", data);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Registration successful!");
-      reset();
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
+    mutation.mutate(data);
   };
 
   return (
@@ -66,14 +77,16 @@ const SignIn = () => {
       </form>
       <div className="mt-6 flex items-center justify-center space-x-4">
         <span>Don't have an account yet? </span>
-        <Link to="/auth/signup" className="underline">
-          {" "}
-          Sign Up
+        <Link to="/auth/signin" className="underline">
+          Sign In
         </Link>
       </div>
 
       <div className="mt-2 flex items-center justify-center space-x-4">
-        <Link to="/auth/forgot-password" className="underline text-primary font-semibold">
+        <Link
+          to="/auth/forgot-password"
+          className="underline text-primary font-semibold"
+        >
           Forgot your password?
         </Link>
       </div>

@@ -1,8 +1,7 @@
-import * as z from "zod/v4"; 
+import * as z from "zod/v4";
 
 export const userSignInSchema = z.object({
   email: z
-    .string()
     .email("Please enter a valid email address")
     .min(1, "Email is required"),
   password: z
