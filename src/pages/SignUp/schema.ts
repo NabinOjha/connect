@@ -4,8 +4,8 @@ export const userRegistrationSchema = z
   .object({
     name: z
       .string()
-      .min(2, "First name must be at least 2 characters")
-      .max(50, "First name must be less than 50 characters"),
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name must be less than 50 characters"),
     email: z
       .email("Please enter a valid email address")
       .min(1, "Email is required"),

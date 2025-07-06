@@ -1,4 +1,3 @@
-import Header from "@/components/layouts/Header";
 import Hero from "@/pages/Home/Hero";
 import Stats from "@/pages/Home/Stats";
 import HowItWorks from "@/pages/Home/HowItWorks";
@@ -8,8 +7,7 @@ import Footer from "@/components/layouts/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gray-50 w-full">
       <Hero />
       <Stats />
       <HowItWorks />

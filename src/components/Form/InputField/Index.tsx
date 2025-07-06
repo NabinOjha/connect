@@ -35,7 +35,7 @@ export function InputField<T extends FieldValues>({
         htmlFor={name}
         className="block text-sm font-medium text-gray-700 mb-1"
       >
-        {label} {required && <span className="text-red-500">*</span>}
+        {label}
       </label>
 
       <div className="relative">
@@ -56,7 +56,11 @@ export function InputField<T extends FieldValues>({
             onClick={() => setInputValueShown((prev) => !prev)}
             tabIndex={-1}
           >
-            {inputValueShown ? <Eye  className="h-5 w-5"/> : <EyeClosed className="w-5 h-5" />}
+            {inputValueShown ? (
+              <Eye className="h-5 w-5" />
+            ) : (
+              <EyeClosed className="w-5 h-5" />
+            )}
           </button>
         )}
       </div>

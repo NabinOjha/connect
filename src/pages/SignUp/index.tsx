@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { signUp } from "@/services/api/auth";
 import { CONTRACTOR, USER } from "@/lib/utils";
 import { toast } from "react-toastify";
+import { useError } from "@/hooks/useError";
 
 const CONTRACTOR_SIGNUP_PATH = "/auth/contracter/signup";
 
@@ -26,6 +27,8 @@ const useFormConfig: UseFormProps<UserRegistrationForm> = {
 
 const SignUp = () => {
   const { pathname } = useLocation();
+  const { getMessage } = useError();
+
   const {
     register,
     handleSubmit,
@@ -36,10 +39,12 @@ const SignUp = () => {
   const mutation = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
+      toast.success("Please check your email to verify your account.");
       reset();
     },
     onError: (error) => {
-      toast.error(error.message);
+      const message = getMessage(error);
+      toast.error(message);
     },
   });
 
